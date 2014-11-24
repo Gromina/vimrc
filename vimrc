@@ -231,6 +231,7 @@ endif
 " Navigation
 Bundle "gmarik/vim-visual-star-search.git"
 Bundle "troydm/easybuffer.vim"
+Bundle "scrooloose/nerdtree"
 " move selection up/down
 let g:move_key_modifier = 'C-S'
 Bundle "matze/vim-move"
