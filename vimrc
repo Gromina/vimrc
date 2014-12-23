@@ -61,7 +61,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set shiftround
-set expandtab
+set noexpandtab
 set smarttab
 
 set backspace=indent,eol,start
@@ -117,11 +117,11 @@ if has('gui_running')
     set guioptions=cMg "console dialogs, do not show menu or toolbar
 
     if has('mac')
-        set guifont=Anonymous\ Pro\:h22
+        set guifont=Menlo\ Regular:h16
     elseif has('win32')
-        set guifont=Consolas:h14:cRUSSIAN
+        set guifont=Consolas:h18:cRUSSIAN
     else
-        set guifont=DejaVu\ Sans\ Mono\ 10
+        set guifont=DejaVu\ Sans\ Mono\ 16
     endif
 endif
 
@@ -132,6 +132,7 @@ au BufRead,BufNewFile *.bml set filetype=perl
 autocmd BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
+autocmd BufNewFile,BufRead *.ftl set filetype=ftl
 
 " Enable comment strings
 let vala_comment_strings = 1
@@ -182,6 +183,7 @@ Bundle "digitaltoad/vim-jade"
 Bundle "Markdown"
 Bundle "edsono/vim-matchit"
 Bundle "artjock/vim-tmpl"
+Bundle "chaquotay/ftl-vim-syntax"
 
 " CSS
 Bundle "Better-CSS-Syntax-for-Vim"
@@ -246,7 +248,8 @@ Bundle "altercation/vim-colors-solarized.git"
 Bundle "L9"
 Bundle "kien/ctrlp.vim"
 let g:ctrlp_map = '<leader>t'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_cmd = 'CtrlP %{getpwd()}'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 " close buffer while leaving windows in place
 Bundle "moll/vim-bbye"
