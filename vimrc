@@ -152,6 +152,7 @@ nmap <leader>j :bp!<CR>
 nmap <leader>- :Bdelete<CR>
 nmap <leader>e :NERDTree<CR>
 nmap + :EasyBufferToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 "replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -186,7 +187,7 @@ Bundle "artjock/vim-tmpl"
 " CSS
 Bundle "Better-CSS-Syntax-for-Vim"
 let g:cssColorVimDoNotMessMyUpdatetime = 1
-Bundle "groenewege/vim-less"
+"Bundle "groenewege/vim-less"
 Bundle "wavded/vim-stylus"
 
 " Javascript
@@ -210,7 +211,8 @@ let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#ParenRainbow = 1
 
 " Utility plugins
-
+let g:jedi#completions_command = "<C-Tab>"
+Bundle "davidhalter/jedi-vim"
 " Easy way to set marks on the page
 Bundle "wokmarks.vim"
 let g:wokmarks_do_maps=1
@@ -300,6 +302,7 @@ Bundle "tommcdo/vim-exchange"
 " select text on enter
 Bundle "gcmt/wildfire.vim"
 Bundle "tpope/vim-unimpaired"
+Bundle "scrooloose/nerdtree"
 
 filetype plugin indent on
 
