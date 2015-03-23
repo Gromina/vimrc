@@ -61,7 +61,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set shiftround
-set expandtab
+set noexpandtab
 set smarttab
 
 set backspace=indent,eol,start
@@ -117,11 +117,11 @@ if has('gui_running')
     set guioptions=cMg "console dialogs, do not show menu or toolbar
 
     if has('mac')
-        set guifont=Anonymous\ Pro\:h22
+        set guifont=Menlo\ Regular:h22
     elseif has('win32')
-        set guifont=Consolas:h14:cRUSSIAN
+        set guifont=Consolas:h18:cRUSSIAN
     else
-        set guifont=DejaVu\ Sans\ Mono\ 10
+        set guifont=DejaVu\ Sans\ Mono\ 16
     endif
 endif
 
@@ -233,6 +233,7 @@ endif
 " Navigation
 Bundle "gmarik/vim-visual-star-search.git"
 Bundle "troydm/easybuffer.vim"
+Bundle "scrooloose/nerdtree"
 " move selection up/down
 let g:move_key_modifier = 'C-S'
 Bundle "matze/vim-move"
@@ -247,7 +248,8 @@ Bundle "altercation/vim-colors-solarized.git"
 Bundle "L9"
 Bundle "kien/ctrlp.vim"
 let g:ctrlp_map = '<leader>t'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_cmd = 'CtrlP %{getpwd()}'
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 " close buffer while leaving windows in place
 Bundle "moll/vim-bbye"
