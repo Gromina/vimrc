@@ -117,7 +117,7 @@ if has('gui_running')
     set guioptions=cMg "console dialogs, do not show menu or toolbar
 
     if has('mac')
-        set guifont=Menlo\ Regular:h16
+        set guifont=Menlo\ Regular:h22
     elseif has('win32')
         set guifont=Consolas:h18:cRUSSIAN
     else
@@ -132,7 +132,6 @@ au BufRead,BufNewFile *.bml set filetype=perl
 autocmd BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
-autocmd BufNewFile,BufRead *.ftl set filetype=ftl
 
 " Enable comment strings
 let vala_comment_strings = 1
@@ -184,12 +183,11 @@ Bundle "digitaltoad/vim-jade"
 Bundle "Markdown"
 Bundle "edsono/vim-matchit"
 Bundle "artjock/vim-tmpl"
-Bundle "chaquotay/ftl-vim-syntax"
 
 " CSS
 "Bundle "Better-CSS-Syntax-for-Vim"
 "let g:cssColorVimDoNotMessMyUpdatetime = 1
-Bundle "groenewege/vim-less"
+"Bundle "groenewege/vim-less"
 Bundle "wavded/vim-stylus"
 
 " Javascript
@@ -204,7 +202,8 @@ Bundle "mxw/vim-jsx"
 
 
 " Utility plugins
-
+let g:jedi#completions_command = "<C-Tab>"
+Bundle "davidhalter/jedi-vim"
 " Easy way to set marks on the page
 Bundle "wokmarks.vim"
 let g:wokmarks_do_maps=1
@@ -297,6 +296,7 @@ Bundle "tommcdo/vim-exchange"
 " select text on enter
 Bundle "gcmt/wildfire.vim"
 Bundle "tpope/vim-unimpaired"
+Bundle "scrooloose/nerdtree"
 
 filetype plugin indent on
 
