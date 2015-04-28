@@ -57,11 +57,11 @@ set sidescrolloff=5
 set listchars=extends:>,precedes:<
 
 " tab settings
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set shiftround
-set noexpandtab
+set expandtab
 set smarttab
 
 set backspace=indent,eol,start
@@ -121,7 +121,7 @@ if has('gui_running')
     elseif has('win32')
         set guifont=Consolas:h18:cRUSSIAN
     else
-        set guifont=DejaVu\ Sans\ Mono\ 16
+        set guifont=DejaVu\ Sans\ Mono\ 12
     endif
 endif
 
@@ -153,6 +153,7 @@ nmap <leader>j :bp!<CR>
 nmap <leader>- :Bdelete<CR>
 nmap <leader>e :NERDTree<CR>
 nmap + :EasyBufferToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 "replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
@@ -186,8 +187,8 @@ Bundle "artjock/vim-tmpl"
 Bundle "chaquotay/ftl-vim-syntax"
 
 " CSS
-Bundle "Better-CSS-Syntax-for-Vim"
-let g:cssColorVimDoNotMessMyUpdatetime = 1
+"Bundle "Better-CSS-Syntax-for-Vim"
+"let g:cssColorVimDoNotMessMyUpdatetime = 1
 Bundle "groenewege/vim-less"
 Bundle "wavded/vim-stylus"
 
@@ -200,22 +201,14 @@ Bundle "pangloss/vim-javascript"
 Bundle "mxw/vim-jsx"
 
 " Other Languages
-Bundle "kchmck/vim-coffee-script"
-let g:coffeeCheckHighlightErrorLine = 1
-Bundle "othree/coffee-check.vim"
 
-" clojure
-Bundle "VimClojure"
-
-let g:vimclojure#WantNailgun = 1
-let g:vimclojure#HighlightBuiltins = 1
-let g:vimclojure#ParenRainbow = 1
 
 " Utility plugins
 
 " Easy way to set marks on the page
 Bundle "wokmarks.vim"
 let g:wokmarks_do_maps=1
+Bundle "godlygeek/tabular"
 
 " helps to repeat custom commands in vim
 Bundle "repeat.vim"
@@ -225,6 +218,7 @@ Bundle "surround.vim"
 Bundle "scrooloose/nerdcommenter"
 " highlight indent levels
 Bundle "nathanaelkane/vim-indent-guides"
+Bundle "SirVer/ultisnips"
 
 if has('gui_running')
   let g:indent_guides_enable_on_vim_startup=1
@@ -250,6 +244,11 @@ Bundle "kien/ctrlp.vim"
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_cmd = 'CtrlP %{getpwd()}'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 "let g:ctrlp_cmd = 'CtrlPBuffer'
 " close buffer while leaving windows in place
 Bundle "moll/vim-bbye"
@@ -264,7 +263,7 @@ Bundle "embear/vim-localvimrc"
 let g:Grep_Xargs_Options = '-0'
 " trying ack
 Bundle "mileszs/ack.vim"
-Bundle "can3p/incbool.vim"
+"Bundle "can3p/incbool.vim"
 Bundle "junegunn/vim-easy-align"
 "internal functions to do fs work, Unlink, Move, Chmod, W etc.
 Bundle "tpope/vim-eunuch"
@@ -275,20 +274,12 @@ Bundle "sickill/vim-pasta"
 " highlight syntax errors
 " disable jshint checker for syntastic
 let g:loaded_syntastic_javascript_jshint_checker = 1
+let g:syntastic_python_checkers = ['flake8']
 Bundle "scrooloose/syntastic"
 
-"run files fast
-let g:quickrun_config = {
-\  'coffee': {
-\    'command': 'coffee',
-\    'cmdopt': '-cbp',
-\    'tempfile': '%{tempname()}.coffee',
-\    'exec': '%c %a %o %s'
-\  },
-\  'coffee/run': {
-\    'command': 'coffee'
-\  }
-\}
+" Python autocompletion
+Bundle "davidhalter/jedi-vim"
+let g:jedi#popup_on_dot = 0
 
 Bundle "thinca/vim-quickrun"
 Bundle "AndrewRadev/splitjoin.vim"
@@ -299,6 +290,8 @@ nmap sk :SplitjoinJoin<cr>
 Bundle "AndrewRadev/linediff.vim"
 
 " pretty statusbar
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline#extensions#branch#displayed_head_limit = 10
 Bundle "bling/vim-airline"
 Bundle "tommcdo/vim-exchange"
 " select text on enter
@@ -308,7 +301,7 @@ Bundle "tpope/vim-unimpaired"
 filetype plugin indent on
 
 if has('gui_running')
-  set background=dark
+  set background=light
   colorscheme solarized
 else
   colorscheme emacs
@@ -344,3 +337,4 @@ endfunction
 command Log call Log()
 
 let g:log_dir = "~/Dropbox/.log"
+nmap <leader>l :!WGCW_CONFIG=etc/config_local.ini invoke test -t %<CR>
